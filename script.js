@@ -5,6 +5,7 @@ const formCadastro = document.querySelector('.form-cadastro');
 const btnCadastrar = document.querySelector('#btn-cadastrar');
 const janelaCadastro = document.querySelector('.cadastrado');
 const btnLogar = document.querySelector('#btn-logar');
+const btnEntrar = document.querySelector('#entrar');
 let usuarios = [];
 
 
@@ -29,12 +30,14 @@ function cadastrarUsuario() {
     let passwordCadastro = document.querySelector('#password-cadastro').value;
     let confirmPasswordCadastro = document.querySelector('#confirm-password-cadastro-confirm').value;   
     
-    if (confirmPasswordCadastro !== passwordCadastro) {
+    if (nomeCadastro === "" || emailCadastro === "" || passwordCadastro === "" || confirmPasswordCadastro === "") {
+        alert("o campo está vazio, por favor preencha todos os campos!")
+    } else if (confirmPasswordCadastro !== passwordCadastro) {
         alert('As senhas não coincidem. Por favor, tente novamente.');
         return;
-    }
+    } else {
 
-    let contaEncontrada = usuarios.find((usuario) => {
+        let contaEncontrada = usuarios.find((usuario) => {
         return usuario.email === emailCadastro;
     });
 
@@ -55,6 +58,9 @@ function cadastrarUsuario() {
     janelaCadastro.classList.remove('hide')
 
     console.log('Usuários cadastrados:', usuarios);
+
+    }
+
 }
 
 btnLogar.addEventListener('click', () => {
@@ -62,3 +68,12 @@ btnLogar.addEventListener('click', () => {
     card.classList.remove('cadastroActive');
     card.classList.add('loginActive');
 });
+
+btnEntrar.addEventListener('click', (e) => {
+    e.preventDefault();
+    fazerLogin();
+})
+function fazerLogin(){
+    
+
+}
